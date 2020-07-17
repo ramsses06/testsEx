@@ -13,8 +13,8 @@ class Registers extends Component {
     this.state = {
       page: 1,
       pages: 0,
-      detailsModal: true,
-      selectedRegistry: 1
+      detailsModal: false,
+      selectedRegistry: 0
     }
     this.limit = 10;
   }
