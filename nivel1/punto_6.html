@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>apdf nivel 1 ejercicio 6</title>
+</head>
+<body>
+
+  <form id="myform">
+    <input name="name" type="text" placeholder="Nombre" />
+    <input name="fLastName" type="text" placeholder="Apellido Paterno" />
+    <input name="mLastName" type="text" placeholder="Apellido Materno" />
+    <input name="age" type="number" placeholder="Edad" />
+    <input name="birth" type="date" placeholder="Fecha de Nacimiento" />
+    <button id="validSubmit" type="button">Validar</button>
+  </form>
+
+  <script>
+    (function () {
+      const sendForm = e => {
+        e.preventDefault();
+        e.stopPropagation();
+        const rfc = document.querySelector('#rfc');
+        alert(rfc.value);
+      }
+
+      const validFields = (data) => {
+        let error = false;
+        for (let key in data) {
+          if (!data[key]) {
+            error = true;
+            break;
+          }
+        }
+        return !error;
+      }
+
+      const validForm = e => {
+        console.log('validForm')
+        e.preventDefault();
+        e.stopPropagation();
+        const form = document.getElementById('myform');
+        let error = false;
+        const formData = new FormData(form);
+        const data = {
+            name: formData.get('name'),
+            fLastName: formData.get('fLastName'),
+            mLastName: formData.get('mLastName'),
+            age: formData.get('age'),
+            birth: formData.get('birth')
+          }
+        const areValidFields = validFields(data);
+        if (areValidFields && !document.querySelector('#sendForm')) {
+          const rfcInput = document.createElement('input');
+          rfcInput.setAttribute('type', 'text');
+          rfcInput.setAttribute('name', 'rfc');
+          rfcInput.setAttribute('id', 'rfc');
+          rfcInput.setAttribute('placeholder', 'RFC');
+          const sendFormInput = document.createElement('button');
+          sendFormInput.setAttribute('type', 'button');
+          sendFormInput.setAttribute('id', 'sendForm');
+          sendFormInput.innerText = 'Enviar formulario';
+          sendFormInput.addEventListener('click', sendForm);
+          form.appendChild(rfcInput);
+          form.appendChild(sendFormInput);
+          document.querySelector('#validSubmit').remove();
+        }
+      }
+      const validSubmit = document.querySelector('#validSubmit');
+      validSubmit.addEventListener('click', validForm, false);
+    })()
+  </script>
+
+
+  <script id="__bs_script__">//<![CDATA[
+    document.write("<script async src='http://HOST:3000/browser-sync/browser-sync-client.js?v=2.26.7'><\/script>".replace("HOST", location.hostname));
+//]]></script>
+</body>
+</html>

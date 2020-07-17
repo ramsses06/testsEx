@@ -1,0 +1,12 @@
+.mymodal-container {
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  & .mymodal-container__row {
+    width: 48%;
+    padding: 5px;
+    border: 2px lightgray solid;
+    margin: 3px;
+  }
+}
